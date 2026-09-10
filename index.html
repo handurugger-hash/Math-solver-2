@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Longhand — work through a math problem</title>
+<meta name="description" content="Type a math problem and Longhand solves it step by step: arithmetic, algebra, equations, derivatives, integrals, and plots.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="page-header">
+  <div class="wrap header-row">
+    <div class="mark">
+      <span class="mark-glyph">∫</span>
+      <span class="mark-word">Longhand</span>
+    </div>
+    <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener">View source</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="hero-kicker">show your work</p>
+    <h1 class="hero-title">Type a problem. Watch it get worked out.</h1>
+
+    <form id="solve-form" class="solve-form" autocomplete="off">
+      <label for="problem-input" class="visually-hidden">Enter a math problem</label>
+      <input
+        id="problem-input"
+        name="problem"
+        type="text"
+        class="solve-input"
+        placeholder="2x + 5 = 17"
+        spellcheck="false"
+      >
+      <button type="submit" class="solve-button">Solve</button>
+    </form>
+
+    <div class="examples" id="examples">
+      <span class="examples-label">try:</span>
+      <button class="chip" data-ex="3x^2 - 12x + 9 = 0">3x² − 12x + 9 = 0</button>
+      <button class="chip" data-ex="derivative of x^3 - 4x + 1">derivative of x³ − 4x + 1</button>
+      <button class="chip" data-ex="simplify 2(x+3) - 4x">simplify 2(x+3) − 4x</button>
+      <button class="chip" data-ex="integrate x^2 from 0 to 3">∫ x² from 0 to 3</button>
+      <button class="chip" data-ex="plot sin(x) * x">plot sin(x)·x</button>
+      <button class="chip" data-ex="(14 * 3 - 7) / 5">(14×3 − 7) / 5</button>
+    </div>
+  </section>
+
+  <section id="result-section" class="result-section" hidden>
+    <div class="result-card">
+      <p class="result-label">interpreted as</p>
+      <p id="result-parsed" class="result-parsed"></p>
+
+      <ol id="result-steps" class="result-steps"></ol>
+
+      <div class="result-answer-row">
+        <p class="result-label">answer</p>
+        <p id="result-answer" class="result-answer"></p>
+      </div>
+
+      <canvas id="result-plot" class="result-plot" width="640" height="320" hidden></canvas>
+    </div>
+  </section>
+
+  <section id="error-section" class="error-section" hidden>
+    <div class="error-card">
+      <p class="error-label">couldn't work through that</p>
+      <p id="error-message" class="error-message"></p>
+    </div>
+  </section>
+
+  <section class="capabilities">
+    <h2 class="section-title">What it can do</h2>
+    <div class="cap-grid">
+      <div class="cap-item">
+        <p class="cap-num">01</p>
+        <h3>Arithmetic</h3>
+        <p>Any expression with the usual operators, parentheses, powers, and roots — evaluated exactly, not approximated when it doesn't need to be.</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-num">02</p>
+        <h3>Equations</h3>
+        <p>Linear and quadratic equations get solved algebraically, with the formula shown. Anything else falls back to a numeric root search across a wide range.</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-num">03</p>
+        <h3>Simplifying</h3>
+        <p>Expand brackets, combine like terms, and reduce an expression to its simplest algebraic form.</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-num">04</p>
+        <h3>Derivatives</h3>
+        <p>Symbolic differentiation for single-variable expressions — polynomials, trig, exponentials, and combinations of them.</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-num">05</p>
+        <h3>Integrals</h3>
+        <p>Polynomials are integrated symbolically. Give bounds ("from a to b") and anything else gets a numeric definite integral instead.</p>
+      </div>
+      <div class="cap-item">
+        <p class="cap-num">06</p>
+        <h3>Plots</h3>
+        <p>Ask it to plot a function of x and it draws the curve on a set of axes, right in the page.</p>
+      </div>
+    </div>
+    <p class="cap-caveat">It doesn't attempt proofs, word problems, multi-variable systems, or anything past first-year calculus — it's built for the everyday algebra-and-calculus category, worked out honestly rather than guessed at.</p>
+  </section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="wrap footer-row">
+    <p>Runs entirely in your browser. Nothing you type is sent anywhere.</p>
+    <p class="footer-credit">Built on <a href="https://mathjs.org" target="_blank" rel="noopener">math.js</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.2/math.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
